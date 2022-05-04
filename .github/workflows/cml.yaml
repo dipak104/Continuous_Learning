@@ -7,6 +7,7 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,4 +23,4 @@ jobs:
           cml-publish feature_importance.png --md >> report.md
           cml-publish residuals.png --md >> report.md
           
-          cml send-comment report.md
+          cml-send-comment report.md
